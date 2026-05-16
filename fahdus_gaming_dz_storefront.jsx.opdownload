@@ -1,0 +1,25 @@
+import { useState } from 'react';
+
+export default function FahdusGamingDZStore() {
+const [products,setProducts]=useState([{name:'يد تحكم Logitech F310',price:'5,900 دج'},{name:'سماعة Gaming اقتصادية',price:'4,500 دج'},{name:'كيبورد Gaming',price:'9,500 دج'},{name:'فأرة Logitech G305',price:'6,500 دج'},{name:'بطاقات PlayStation رقمية',price:'ابتداءً من 1,900 دج'}]);
+const [section,setSection]=useState('الرئيسية');
+const sections=['الرئيسية','المنتجات','النصائح','الأخبار','التواصل','الدفع','الحسابات','نبذة عنا','لوحة التحكم'];
+
+return (
+<div className='min-h-screen bg-black text-white'>
+<header className='p-6 border-b border-cyan-500 flex justify-between'>
+<h1 className='text-4xl text-cyan-400 font-bold'>🐺 Fahdus Gaming DZ</h1>
+<nav className='flex gap-2 flex-wrap'>{sections.map(s=><button key={s} onClick={()=>setSection(s)} className='px-4 py-2 bg-slate-900 rounded-xl'>{s}</button>)}</nav>
+</header>
+
+<main className='p-8'>
+{section==='الرئيسية' && <div><h2 className='text-5xl'>متجر الذئب الآلي</h2><p>إكسسوارات، بطاقات، سماعات، اشتراكات، ونصائح Gaming. Level Up Your Game</p></div>}
+
+{section==='المنتجات' && <div className='grid md:grid-cols-3 gap-6'>{products.map((p,i)=><div key={i} className='bg-slate-900 p-6 rounded-2xl border border-green-500'><h3>{p.name}</h3><p>{p.price}</p><button className='mt-4 bg-cyan-500 px-4 py-2 rounded'>اطلب الآن</button></div>)}</div>}
+
+{section==='لوحة التحكم' && <div className='bg-slate-900 p-8 rounded-2xl'><h2 className='text-3xl'>لوحة التحكم العربية</h2><p>إضافة وتعديل المنتجات، الأخبار، النصائح، الطلبات.</p><button className='bg-green-500 px-4 py-2 mt-4 rounded'>إضافة منتج</button></div>}
+
+{section==='الدفع' && <div><h2>نموذج الطلب - توصيل إلى كل الجزائر | 50% قبل الاستلام</h2><input className='block p-3 bg-slate-800 my-2 w-full' placeholder='الاسم'/><input className='block p-3 bg-slate-800 my-2 w-full' placeholder='رقم الهاتف'/><textarea className='block p-3 bg-slate-800 my-2 w-full' placeholder='الطلب'></textarea><button className='bg-cyan-500 px-6 py-3 rounded'>إرسال الطلب</button></div>}
+</main>
+</div>
+)}
